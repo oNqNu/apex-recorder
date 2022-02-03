@@ -27,7 +27,7 @@ function App() {
                 <Radio value='xbl'>x box</Radio>
               </HStack>
             </RadioGroup>
-            <FormLabel htmlFor='id'>IDを入力してください．</FormLabel>
+            <FormLabel htmlFor='id'>IDを入力してください．頼む．</FormLabel>
             <Input id='id' placeholder='id' />
           </FormControl>
         </Container>
