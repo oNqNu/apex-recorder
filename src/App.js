@@ -1,26 +1,41 @@
-import logo from "./logo.svg";
-import "./App.css";
+import './App.css'
+import {
+  chakra,
+  ChakraProvider,
+  Container,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  HStack,
+  Radio,
+  Input,
+} from '@chakra-ui/react'
+import { MyText } from './component/utils'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>こーくん</h1>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ChakraProvider>
+      <chakra.main>
+        <Container maxW='2xl'>
+          <MyText>Apex Legends 戦績checker</MyText>
+          <FormControl as='fieldset'>
+            <FormLabel as='legend'>
+              プラットフォームを選択してください．
+            </FormLabel>
+            <RadioGroup defaultValue='Itachi'>
+              <HStack spacing='24px'>
+                <Radio value='orogin'>origin</Radio>
+                <Radio value='psn'>play station</Radio>
+                <Radio value='xbl'>x box</Radio>
+              </HStack>
+            </RadioGroup>
+            <FormLabel htmlFor='first-name'>IDを入力してください．</FormLabel>
+            <Input id='id' placeholder='id' />
+          </FormControl>
+        </Container>
+      </chakra.main>
+    </ChakraProvider>
+  )
 }
 
-export default App;
+export default App
