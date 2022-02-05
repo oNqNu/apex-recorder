@@ -26,13 +26,13 @@ function App() {
   })
 
   const [user, setUser] = useState()
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleChange(name, value) {
     setFormValues((prev) => ({ ...prev, [name]: value }))
   }
 
-  console.log(formValues)
-  console.log(user)
+  const overview = user?.segments.find((v) => v.type === 'overview').stats
 
   return (
     <ChakraProvider>
@@ -65,36 +65,40 @@ function App() {
           type='submit'
           colorScheme='teal'
           variant='solid'
-          onClick={() => {
-            axios(
+          isLoading={isLoading}
+          onClick={async (e) => {
+            setIsLoading(true)
+            await axios(
               `/v2/apex/standard/profile/${formValues.platform}/${formValues.id}?TRN-Api-Key=b8782847-ade0-4502-9baf-bc700bcc9520`
             )
               .then(({ data }) => setUser(data.data))
               .catch((error) => console.log(error))
+            setIsLoading(false)
           }}
         >
           戦績を確認する😘
         </Button>
+        {user && (
+          <StatGroup display='grid' gridTemplateColumns='repeat(2, 1fr)'>
+            <Stat pl='20'>
+              <StatLabel>Level</StatLabel>
+              <StatNumber>{overview.level.value}</StatNumber>
+              <StatHelpText>
+                <StatArrow type='increase' />
+                {overview.level.rank}位
+              </StatHelpText>
+            </Stat>
 
-        <StatGroup display='grid' gridTemplateColumns='repeat(2, 1fr)'>
-          <Stat pl='20'>
-            <StatLabel>Sent</StatLabel>
-            <StatNumber>345,670</StatNumber>
-            <StatHelpText>
-              <StatArrow type='increase' />
-              23.36%
-            </StatHelpText>
-          </Stat>
-
-          <Stat pl='20'>
-            <StatLabel>Clicked</StatLabel>
-            <StatNumber>45</StatNumber>
-            <StatHelpText>
-              <StatArrow type='decrease' />
-              9.05%
-            </StatHelpText>
-          </Stat>
-        </StatGroup>
+            <Stat pl='20'>
+              <StatLabel>Clicked</StatLabel>
+              <StatNumber>45</StatNumber>
+              <StatHelpText>
+                <StatArrow type='decrease' />
+                {overview.level.parcentile}
+              </StatHelpText>
+            </Stat>
+          </StatGroup>
+        )}
       </Container>
     </ChakraProvider>
   )
