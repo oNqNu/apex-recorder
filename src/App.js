@@ -100,7 +100,7 @@ function App() {
               onClick={async (e) => {
                 setIsLoading(true)
                 await axios(
-                  `/v2/apex/standard/profile/${formValues.platform}/${formValues.id}?TRN-Api-Key=b8782847-ade0-4502-9baf-bc700bcc9520`
+                  `https://public-api.tracker.gg/v2/apex/standard/profile/${formValues.platform}/${formValues.id}?TRN-Api-Key=b8782847-ade0-4502-9baf-bc700bcc9520`
                 )
                   .then(({ data }) => setUser(data.data))
                   .catch((error) => console.log(error))
