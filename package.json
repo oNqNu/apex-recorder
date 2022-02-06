@@ -1,8 +1,8 @@
 {
-  "name": "apex-recoder",
+  "name": "apex-recorder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://onqnu.github.io/apex-recoder",
+  "homepage": "https://onqnu.github.io/apex-recorder",
   "dependencies": {
     "@chakra-ui/react": "^1.8.1",
     "@emotion/react": "^11.7.1",
