@@ -26,6 +26,13 @@ function App() {
   })
 
   const [user, setUser] = useState()
+  const statItems = [
+    { label: 'level', name: 'Level' },
+    { label: 'kills', name: '累計kill数' },
+    { label: 'damage', name: '累計ダメージ' },
+    { label: 'killsPerMatch', name: 'kill / match' },
+    { label: 'damagePerMatch', name: 'ダメージ / match' },
+  ]
   const [isLoading, setIsLoading] = useState(false)
 
   function handleChange(name, value) {
@@ -62,10 +69,12 @@ function App() {
           />
         </FormControl>
         <Button
+          w='3xs'
           type='submit'
           colorScheme='teal'
           variant='solid'
           isLoading={isLoading}
+          textAlign='center'
           onClick={async (e) => {
             setIsLoading(true)
             await axios(
@@ -80,23 +89,20 @@ function App() {
         </Button>
         {user && (
           <StatGroup display='grid' gridTemplateColumns='repeat(2, 1fr)'>
-            <Stat pl='20'>
-              <StatLabel>Level</StatLabel>
-              <StatNumber>{overview.level.value}</StatNumber>
-              <StatHelpText>
-                <StatArrow type='increase' />
-                {overview.level.rank}位
-              </StatHelpText>
-            </Stat>
-
-            <Stat pl='20'>
-              <StatLabel>Clicked</StatLabel>
-              <StatNumber>45</StatNumber>
-              <StatHelpText>
-                <StatArrow type='decrease' />
-                {overview.level.parcentile}
-              </StatHelpText>
-            </Stat>
+            {statItems.map((item) => (
+              <Stat pl='20'>
+                <StatLabel fontSize='xl'>{item.name}</StatLabel>
+                <StatNumber fontSize='2xl'>
+                  {overview[item.label].value}
+                </StatNumber>
+                <StatHelpText>
+                  <StatArrow type='increase' />
+                  {overview[item.label].rank
+                    ? `${overview[item.label].rank}位`
+                    : 'ランキング圏外'}
+                </StatHelpText>
+              </Stat>
+            ))}
           </StatGroup>
         )}
       </Container>
