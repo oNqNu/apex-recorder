@@ -22,8 +22,8 @@ import {
   Image,
   chakra,
   Center,
+  Heading,
 } from '@chakra-ui/react'
-import { MyText } from './component/utils'
 import axios from 'axios'
 
 function App() {
@@ -74,10 +74,10 @@ function App() {
     <ChakraProvider>
       <chakra.main bgColor='white' minH='100vh' fontFamily='sans-serif'>
         <Container maxW='3xl'>
-          <MyText align='center' mt='4'>
+          <Heading align='center' mt='10'>
             Apex Legends 戦績checker
-          </MyText>
-          <FormControl mt='4'>
+          </Heading>
+          <FormControl mt='10'>
             <FormLabel>プラットフォームを選択してください．</FormLabel>
             <RadioGroup
               defaultValue='psn'
@@ -130,7 +130,7 @@ function App() {
               戦績を確認する😘
             </Button>
           </Center>
-          <Text mt='4' align='center'>
+          <Text mt='4' align='center' color='red.500'>
             {errorMsg}
           </Text>
 
@@ -168,7 +168,7 @@ function App() {
                   </Box>
                 </Flex>
               </Center>
-              {formValues.id === 'oNqNu' ? (
+              {formValues.id.toUpperCase() === 'ONQNU' ? (
                 <Text fontSize='3xl' align='center' mt='8'>
                   俺の戦績は国家機密だよ，出直してください😘
                 </Text>
@@ -249,6 +249,15 @@ function App() {
               )}
             </>
           )}
+          <Text
+            fontSize='2xl'
+            align='right'
+            fontWeight='semibold'
+            fontStyle='italic'
+            my='8'
+          >
+            prod by oNqNu
+          </Text>
         </Container>
       </chakra.main>
     </ChakraProvider>
