@@ -121,6 +121,7 @@ function App() {
                   })
                   .catch((error) => {
                     console.log(error)
+                    setUser(null)
                     setErrorMsg('正しくプラットフォーム,IDを入力してください🧛‍♀️')
                   })
                 setIsLoading(false)
