@@ -168,7 +168,7 @@ function App() {
                   </Box>
                 </Flex>
               </Center>
-              {formValues.id.toUpperCase() === 'ONQNU' ? (
+              {user.platformInfo.platformUserId.toUpperCase() === 'ONQNU' ? (
                 <Text fontSize='3xl' align='center' mt='8'>
                   俺の戦績は国家機密だよ，出直してください😘
                 </Text>
