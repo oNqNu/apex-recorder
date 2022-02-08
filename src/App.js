@@ -57,16 +57,16 @@ function App() {
   function handleChange(name, value) {
     setFormValues((prev) => ({ ...prev, [name]: value }))
   }
-  // useEffect(() => {
-  //   axios(
-  //     `https://asia-northeast1-spsheet-test-328520.cloudfunctions.net/getApexData?platform=psn&id=Yqma45`
-  //   )
-  //     .then(({ data }) => {
-  //       setUser(data)
-  //       console.log(data)
-  //     })
-  //     .catch((error) => console.log(error))
-  // }, [])
+  useEffect(() => {
+    // axios(
+    //   `https://asia-northeast1-spsheet-test-328520.cloudfunctions.net/getApexData?platform=psn&id=Yqma45`
+    // )
+    //   .then(({ data }) => {
+    //     setUser(data)
+    //     console.log(data)
+    //   })
+    //   .catch((error) => console.log(error))
+  }, [])
 
   const overview = user?.segments.find((v) => v.type === 'overview').stats
 
