@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from 'react'
 import {
+  Box,
+  Button,
+  Center,
+  chakra,
   ChakraProvider,
   Container,
+  Flex,
   FormControl,
   FormLabel,
-  RadioGroup,
+  Heading,
   HStack,
-  Radio,
+  Image,
   Input,
-  Button,
+  Radio,
+  RadioGroup,
+  Spacer,
   Stat,
+  StatArrow,
   StatGroup,
-  StatNumber,
   StatHelpText,
   StatLabel,
-  StatArrow,
-  Box,
+  StatNumber,
   Text,
-  Flex,
-  Spacer,
-  Image,
-  chakra,
-  Center,
-  Heading,
 } from '@chakra-ui/react'
 import axios from 'axios'
-
+import React, { useState } from 'react'
 function App() {
   const [formValues, setFormValues] = useState({
     platform: '',
@@ -57,49 +56,55 @@ function App() {
   function handleChange(name, value) {
     setFormValues((prev) => ({ ...prev, [name]: value }))
   }
-  useEffect(() => {
-    // axios(
-    //   `https://asia-northeast1-spsheet-test-328520.cloudfunctions.net/getApexData?platform=psn&id=Yqma45`
-    // )
-    //   .then(({ data }) => {
-    //     setUser(data)
-    //     console.log(data)
-    //   })
-    //   .catch((error) => console.log(error))
-  }, [])
 
   const overview = user?.segments.find((v) => v.type === 'overview').stats
 
   return (
     <ChakraProvider>
-      <chakra.main bgColor='white' minH='100vh' fontFamily='sans-serif'>
+      <chakra.main
+        bgColor='white'
+        minH='100vh'
+        fontFamily='sans-serif'
+        color='white'
+        backgroundImage={`url(${process.env.PUBLIC_URL}/bg1.jpg)`}
+        backgroundAttachment='fixed'
+        backgroundSize='cover'
+        p='0'
+      >
         <Container maxW='3xl'>
-          <Heading align='center' mt='10'>
+          <Heading align='center' pt='10' fontSize='5xl'>
             Apex Legends 戦績checker
           </Heading>
-          <FormControl mt='10'>
-            <FormLabel>プラットフォームを選択してください．</FormLabel>
-            <RadioGroup
-              defaultValue='psn'
-              value={formValues.platform}
-              onChange={(value) => handleChange('platform', value)}
-            >
-              <HStack spacing='24px'>
-                <Radio value='origin'>origin</Radio>
-                <Radio value='psn'>play station</Radio>
-                <Radio value='xbl'>x box</Radio>
-              </HStack>
-            </RadioGroup>
-          </FormControl>
-          <FormControl mt='4'>
-            <FormLabel htmlFor='id'>IDを入力してください．</FormLabel>
-            <Input
-              id='id'
-              value={formValues.id}
-              placeholder='id'
-              onChange={(e) => handleChange('id', e.target.value)}
-            />
-          </FormControl>
+          <Box>
+            <FormControl mt='10'>
+              <FormLabel fontSize='2xl'>
+                プラットフォームを選択してください．
+              </FormLabel>
+              <RadioGroup
+                defaultValue='psn'
+                value={formValues.platform}
+                onChange={(value) => handleChange('platform', value)}
+              >
+                <HStack spacing='24px'>
+                  <Radio value='origin'>origin</Radio>
+                  <Radio value='psn'>play station</Radio>
+                  <Radio value='xbl'>x box</Radio>
+                </HStack>
+              </RadioGroup>
+            </FormControl>
+            <FormControl mt='4'>
+              <FormLabel htmlFor='id' fontSize='2xl'>
+                IDを入力してください．
+              </FormLabel>
+              <Input
+                id='id'
+                value={formValues.id}
+                placeholder='id'
+                onChange={(e) => handleChange('id', e.target.value)}
+                bgColor='rgba(255,255,255,0.2)'
+              />
+            </FormControl>
+          </Box>
           <Center>
             <Button
               size='lg'
@@ -136,12 +141,12 @@ function App() {
 
           {user && (
             <>
-              <Center>
+              <Center color='black'>
                 <Flex
                   mx='32'
                   mt='4'
                   px='8'
-                  bgColor='White'
+                  bgColor='rgba(255,255,255,0.8)'
                   w='400px'
                   h='40'
                   borderRadius='3xl'
@@ -169,17 +174,17 @@ function App() {
                 </Flex>
               </Center>
               {user.platformInfo.platformUserId.toUpperCase() === 'ONQNU' ? (
-                <Text fontSize='3xl' align='center' mt='8'>
+                <Text fontSize='3xl' align='center' mt='8' color='black'>
                   俺の戦績は国家機密だよ，出直してください😘
                 </Text>
               ) : (
                 <>
-                  <StatGroup mt='4' display='flex'>
+                  <StatGroup mt='4' display='flex' color='black'>
                     {rankStatItems.map(
                       (item) =>
                         overview[item.label] && (
                           <Flex
-                            bgColor='White'
+                            bgColor='rgba(255,255,255,0.8)'
                             border='1px'
                             borderColor='gray.200'
                             boxShadow='xl'
@@ -221,12 +226,14 @@ function App() {
                     mt='10'
                     mx='4'
                     pl={['10', '0']}
+                    color='black'
+                    columnGap='20'
                   >
                     {statItems.map(
                       (item) =>
                         overview[item.label] && (
                           <Stat
-                            bgColor='whiteAlpha.900'
+                            bgColor='rgba(255,255,255,0.4)'
                             mb='4'
                             textAlign={['left', 'center']}
                           >
