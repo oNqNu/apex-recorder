@@ -71,7 +71,7 @@ function App() {
         backgroundSize='cover'
         p='0'
       >
-        <Box minH='100vh' backgroundColor='rgba(0,0,0,0.3)'>
+        <Box minH='100vh' backgroundColor='rgba(0,0,0,0.4)'>
           <Container maxW='3xl'>
             <Heading align='center' pt='10' fontSize='5xl'>
               Apex Legends 戦績checker
@@ -135,7 +135,7 @@ function App() {
                   setIsLoading(false)
                 }}
               >
-                戦績を確認する😘
+                戦績を確認する
               </Button>
             </Center>
             <Text mt='4' align='center' color='red.500'>
@@ -163,6 +163,7 @@ function App() {
                       </Text>
                       <Text
                         fontSize='2xl'
+                        fontWeight='bold'
                         align='center'
                         borderBottom='solid 2px black'
                       >
@@ -235,26 +236,36 @@ function App() {
                         (item) =>
                           overview[item.label] && (
                             <Stat
-                              bgColor='rgba(255,255,255,0.8)'
+                              bgColor='rgba(255,255,255,0.7)'
                               mb='4'
-                              textAlign={['left', 'center']}
-                              w='56'
-                              h='60'
+                              textAlign='center'
+                              w='60'
+                              h='64'
                               border='1px'
                               borderRadius='xl'
+                              mx='auto'
                             >
                               <Box m='8'>
+                                <Box
+                                  h='2'
+                                  w='10'
+                                  // bgColor='ThreeDShadow'
+                                  borderBottom='4px solid ThreeDShadow'
+                                ></Box>
                                 <StatLabel
                                   fontSize='lg'
                                   fontWeight='bold'
                                   textAlign='left'
+                                  mt='2'
                                 >
                                   {item.name}
                                 </StatLabel>
 
                                 <StatNumber
-                                  fontSize='3xl'
+                                  fontSize='4xl'
                                   fontWeight='bold'
+                                  color='red.500'
+                                  textShadow='2px 2px 2px black'
                                   mt='8'
                                 >
                                   {overview[item.label].value}
@@ -282,7 +293,7 @@ function App() {
               align='right'
               fontWeight='semibold'
               fontStyle='italic'
-              my='8'
+              mt='8'
             >
               prod by oNqNu
             </Text>
