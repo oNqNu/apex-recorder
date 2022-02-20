@@ -269,7 +269,7 @@ function App() {
                                 </StatLabel>
 
                                 <StatNumber
-                                  fontSize='2xl'
+                                  fontSize={['2xl', '4xl']}
                                   fontWeight='bold'
                                   color='red.500'
                                   textShadow='2px 2px 2px black'
