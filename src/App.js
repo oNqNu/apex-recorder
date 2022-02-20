@@ -73,12 +73,12 @@ function App() {
       >
         <Box minH='100vh' backgroundColor='rgba(0,0,0,0.4)'>
           <Container maxW='3xl'>
-            <Heading align='center' pt='10' fontSize='5xl'>
+            <Heading align='center' pt='10' fontSize={['2xl', '5xl']}>
               Apex Legends 戦績checker
             </Heading>
             <Box>
               <FormControl mt='10'>
-                <FormLabel fontSize='2xl'>
+                <FormLabel fontSize={['lg', '2xl']}>
                   プラットフォームを選択してください．
                 </FormLabel>
                 <RadioGroup
@@ -236,16 +236,16 @@ function App() {
                         (item) =>
                           overview[item.label] && (
                             <Stat
-                              bgColor='rgba(255,255,255,0.7)'
+                              bgColor='rgba(255,255,255,0.8)'
                               mb='4'
                               textAlign='center'
-                              w='60'
-                              h='64'
+                              w={['64', '60']}
+                              h={['32', '64']}
                               border='1px'
                               borderRadius='xl'
                               mx='auto'
                             >
-                              <Box m='8'>
+                              <Box m={['4', '8']}>
                                 <Box
                                   h='2'
                                   w='10'
@@ -253,7 +253,7 @@ function App() {
                                   borderBottom='4px solid ThreeDShadow'
                                 ></Box>
                                 <StatLabel
-                                  fontSize='lg'
+                                  fontSize={['md', 'lg']}
                                   fontWeight='bold'
                                   textAlign='left'
                                   mt='2'
@@ -262,11 +262,11 @@ function App() {
                                 </StatLabel>
 
                                 <StatNumber
-                                  fontSize='4xl'
+                                  fontSize='2xl'
                                   fontWeight='bold'
                                   color='red.500'
                                   textShadow='2px 2px 2px black'
-                                  mt='8'
+                                  mt={['0', '8']}
                                 >
                                   {overview[item.label].value}
                                 </StatNumber>
