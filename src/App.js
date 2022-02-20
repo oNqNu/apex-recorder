@@ -94,7 +94,7 @@ function App() {
                 </RadioGroup>
               </FormControl>
               <FormControl mt='4'>
-                <FormLabel htmlFor='id' fontSize='2xl'>
+                <FormLabel htmlFor='id' fontSize={['lg', '2xl']}>
                   IDを入力してください．
                 </FormLabel>
                 <Input
@@ -151,18 +151,18 @@ function App() {
                     px='8'
                     bgColor='rgba(255,255,255,0.8)'
                     w='400px'
-                    h='40'
+                    h={['32', '40']}
                     borderRadius='3xl'
                     border='1px'
                     borderColor='gray.200'
                     boxShadow='xl'
                   >
                     <Box pt='10' px='4'>
-                      <Text fontSize='md' align='center'>
+                      <Text fontSize={['sm', 'md']} align='center'>
                         Your ID
                       </Text>
                       <Text
-                        fontSize='2xl'
+                        fontSize={['lg', '2xl']}
                         fontWeight='bold'
                         align='center'
                         borderBottom='solid 2px black'
@@ -172,13 +172,18 @@ function App() {
                     </Box>
                     <Spacer />
 
-                    <Box w='32' h='32' p='2' my='auto'>
+                    <Box w={['24', '32']} h={['24', '32']} p='2' my='auto'>
                       <Image src={user.platformInfo.avatarUrl} />
                     </Box>
                   </Flex>
                 </Center>
                 {user.platformInfo.platformUserId.toUpperCase() === 'ONQNU' ? (
-                  <Text fontSize='3xl' align='center' mt='8' color='black'>
+                  <Text
+                    fontSize={['xl', '3xl']}
+                    align='center'
+                    mt='8'
+                    color='white'
+                  >
                     俺の戦績は国家機密だよ，出直してください😘
                   </Text>
                 ) : (
@@ -193,17 +198,19 @@ function App() {
                               borderColor='gray.200'
                               boxShadow='xl'
                               borderRadius='xl'
-                              p='2'
+                              p='4'
                               m='2'
                               maxW='lg'
                             >
                               <Stat pr='1'>
-                                <StatLabel fontSize='xl'>{item.name}</StatLabel>
+                                <StatLabel fontSize={['md', 'xl']}>
+                                  {item.name}
+                                </StatLabel>
                                 <Text>
                                   {overview[item.label].metadata.rankName}
                                 </Text>
                                 <StatNumber
-                                  fontSize='3xl'
+                                  fontSize={['2xl', '3xl']}
                                   borderBottom='solid 2px black'
                                 >
                                   {overview[item.label].value}rp
@@ -289,7 +296,7 @@ function App() {
               </>
             )}
             <Text
-              fontSize='2xl'
+              fontSize={['lg', '2xl']}
               align='right'
               fontWeight='semibold'
               fontStyle='italic'
