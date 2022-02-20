@@ -246,8 +246,8 @@ function App() {
                               bgColor='rgba(255,255,255,0.8)'
                               mb='4'
                               textAlign='center'
-                              w={['64', '60']}
-                              h={['32', '64']}
+                              w={['64', '62']}
+                              h={['32', '52']}
                               border='1px'
                               borderRadius='xl'
                               mx='auto'
@@ -273,7 +273,7 @@ function App() {
                                   fontWeight='bold'
                                   color='red.500'
                                   textShadow='2px 2px 2px black'
-                                  mt={['0', '8']}
+                                  mt={['0', '4']}
                                 >
                                   {overview[item.label].value}
                                 </StatNumber>
