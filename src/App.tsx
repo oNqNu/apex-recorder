@@ -31,7 +31,7 @@ function App() {
     id: '',
   })
 
-  const [user, setUser] = useState()
+  const [user, setUser] = useState<any>()
   const [errorMsg, setErrorMsg] = useState('')
 
   const statItems = [
