@@ -23,7 +23,7 @@ import {
   StatNumber,
   Text,
 } from '@chakra-ui/react'
-import { MyStat } from './component/stat'
+import { MyStat, MyRankStat } from './component/stat'
 import axios from 'axios'
 import React, { useState } from 'react'
 function App() {
@@ -193,42 +193,43 @@ function App() {
                       {rankStatItems.map(
                         (item) =>
                           overview[item.label] && (
-                            <Flex
-                              bgColor='rgba(255,255,255,0.8)'
-                              border='1px'
-                              borderColor='gray.200'
-                              boxShadow='xl'
-                              borderRadius='xl'
-                              p='4'
-                              m='2'
-                              maxW='lg'
-                            >
-                              <Stat pr='1'>
-                                <StatLabel fontSize={['md', 'xl']}>
-                                  {item.name}
-                                </StatLabel>
-                                <Text>
-                                  {overview[item.label].metadata.rankName}
-                                </Text>
-                                <StatNumber
-                                  fontSize={['2xl', '3xl']}
-                                  borderBottom='solid 2px black'
-                                >
-                                  {overview[item.label].value}rp
-                                </StatNumber>
-                                <StatHelpText>
-                                  <StatArrow type='increase' />
-                                  {overview[item.label].rank
-                                    ? `${overview[item.label].rank}位`
-                                    : 'ランキング圏外'}
-                                </StatHelpText>
-                              </Stat>
-                              <Center>
-                                <Image
-                                  src={overview[item.label].metadata.iconUrl}
-                                />
-                              </Center>
-                            </Flex>
+                            // <Flex
+                            //   bgColor='rgba(255,255,255,0.8)'
+                            //   border='1px'
+                            //   borderColor='gray.200'
+                            //   boxShadow='xl'
+                            //   borderRadius='xl'
+                            //   p='4'
+                            //   m='2'
+                            //   maxW='lg'
+                            // >
+                            //   <Stat pr='1'>
+                            //     <StatLabel fontSize={['md', 'xl']}>
+                            //       {item.name}
+                            //     </StatLabel>
+                            //     <Text>
+                            //       {overview[item.label].metadata.rankName}
+                            //     </Text>
+                            //     <StatNumber
+                            //       fontSize={['2xl', '3xl']}
+                            //       borderBottom='solid 2px black'
+                            //     >
+                            //       {overview[item.label].value}rp
+                            //     </StatNumber>
+                            //     <StatHelpText>
+                            //       <StatArrow type='increase' />
+                            //       {overview[item.label].rank
+                            //         ? `${overview[item.label].rank}位`
+                            //         : 'ランキング圏外'}
+                            //     </StatHelpText>
+                            //   </Stat>
+                            //   <Center>
+                            //     <Image
+                            //       src={overview[item.label].metadata.iconUrl}
+                            //     />
+                            //   </Center>
+                            // </Flex>
+                            <MyRankStat item={item} overview={overview} />
                           )
                       )}
                     </StatGroup>
