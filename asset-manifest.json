@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/apex-recorder/static/js/main.cce7c307.js",
+    "main.js": "/apex-recorder/static/js/main.f8d5b555.js",
     "index.html": "/apex-recorder/index.html",
-    "main.cce7c307.js.map": "/apex-recorder/static/js/main.cce7c307.js.map"
+    "main.f8d5b555.js.map": "/apex-recorder/static/js/main.f8d5b555.js.map"
   },
   "entrypoints": [
-    "static/js/main.cce7c307.js"
+    "static/js/main.f8d5b555.js"
   ]
 }
