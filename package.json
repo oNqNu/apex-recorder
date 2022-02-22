@@ -24,10 +24,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "export": "react-scripts export",
-    "build": "tsc"
+    "export": "react-scripts export"
   },
   "eslintConfig": {
     "extends": [
