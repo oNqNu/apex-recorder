@@ -1,5 +1,4 @@
 import { Button } from '@chakra-ui/react'
-import { Children } from 'react'
 
 export const MyButton = ({ children, ...props }: any) => {
   return (
