@@ -1,31 +1,24 @@
 import {
   Box,
-  Button,
   Center,
   chakra,
   ChakraProvider,
   Container,
-  Flex,
   FormControl,
   FormLabel,
   Heading,
   HStack,
-  Image,
   Input,
   Radio,
   RadioGroup,
-  Spacer,
-  Stat,
-  StatArrow,
   StatGroup,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
   Text,
 } from '@chakra-ui/react'
-import { MyStat, MyRankStat } from './component/stat'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { MyButton } from './component/button'
+import { MyRankStat, MyStat } from './component/stat'
+import { UserCard } from './component/utils'
 function App() {
   const [formValues, setFormValues] = useState({
     platform: '',
@@ -56,6 +49,24 @@ function App() {
 
   function handleChange(name, value) {
     setFormValues((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const getData = async (e) => {
+    setIsLoading(true)
+    setErrorMsg('')
+    await axios(
+      `https://asia-northeast1-spsheet-test-328520.cloudfunctions.net/getApexData?platform=${formValues.platform}&id=${formValues.id}`
+    )
+      .then(({ data }) => {
+        setUser(data)
+        console.log(data)
+      })
+      .catch((error) => {
+        console.log(error)
+        setUser(null)
+        setErrorMsg('正しくプラットフォーム,IDを入力してください.')
+      })
+    setIsLoading(false)
   }
 
   const overview = user?.segments.find((v) => v.type === 'overview').stats
@@ -108,36 +119,9 @@ function App() {
               </FormControl>
             </Box>
             <Center>
-              <Button
-                size='lg'
-                type='submit'
-                colorScheme='teal'
-                variant='solid'
-                isLoading={isLoading}
-                align='center'
-                mt='4'
-                onClick={async (e) => {
-                  setIsLoading(true)
-                  setErrorMsg('')
-                  await axios(
-                    `https://asia-northeast1-spsheet-test-328520.cloudfunctions.net/getApexData?platform=${formValues.platform}&id=${formValues.id}`
-                  )
-                    .then(({ data }) => {
-                      setUser(data)
-                      console.log(data)
-                    })
-                    .catch((error) => {
-                      console.log(error)
-                      setUser(null)
-                      setErrorMsg(
-                        '正しくプラットフォーム,IDを入力してください.'
-                      )
-                    })
-                  setIsLoading(false)
-                }}
-              >
+              <MyButton isLoading={isLoading} onClick={getData}>
                 戦績を確認する
-              </Button>
+              </MyButton>
             </Center>
             <Text mt='4' align='center' color='red.500'>
               {errorMsg}
@@ -146,37 +130,7 @@ function App() {
             {user && (
               <>
                 <Center color='black'>
-                  <Flex
-                    mx='32'
-                    mt='4'
-                    px='8'
-                    bgColor='rgba(255,255,255,0.8)'
-                    w='400px'
-                    h={['32', '40']}
-                    borderRadius='3xl'
-                    border='1px'
-                    borderColor='gray.200'
-                    boxShadow='xl'
-                  >
-                    <Box pt='10' px='4'>
-                      <Text fontSize={['sm', 'md']} align='center'>
-                        Your ID
-                      </Text>
-                      <Text
-                        fontSize={['lg', '2xl']}
-                        fontWeight='bold'
-                        align='center'
-                        borderBottom='solid 2px black'
-                      >
-                        {user.platformInfo.platformUserId}
-                      </Text>
-                    </Box>
-                    <Spacer />
-
-                    <Box w={['24', '32']} h={['24', '32']} p='2' my='auto'>
-                      <Image src={user.platformInfo.avatarUrl} />
-                    </Box>
-                  </Flex>
+                  <UserCard user={user} />
                 </Center>
                 {user.platformInfo.platformUserId.toUpperCase() === 'ONQNU' ? (
                   <Text
@@ -193,42 +147,6 @@ function App() {
                       {rankStatItems.map(
                         (item) =>
                           overview[item.label] && (
-                            // <Flex
-                            //   bgColor='rgba(255,255,255,0.8)'
-                            //   border='1px'
-                            //   borderColor='gray.200'
-                            //   boxShadow='xl'
-                            //   borderRadius='xl'
-                            //   p='4'
-                            //   m='2'
-                            //   maxW='lg'
-                            // >
-                            //   <Stat pr='1'>
-                            //     <StatLabel fontSize={['md', 'xl']}>
-                            //       {item.name}
-                            //     </StatLabel>
-                            //     <Text>
-                            //       {overview[item.label].metadata.rankName}
-                            //     </Text>
-                            //     <StatNumber
-                            //       fontSize={['2xl', '3xl']}
-                            //       borderBottom='solid 2px black'
-                            //     >
-                            //       {overview[item.label].value}rp
-                            //     </StatNumber>
-                            //     <StatHelpText>
-                            //       <StatArrow type='increase' />
-                            //       {overview[item.label].rank
-                            //         ? `${overview[item.label].rank}位`
-                            //         : 'ランキング圏外'}
-                            //     </StatHelpText>
-                            //   </Stat>
-                            //   <Center>
-                            //     <Image
-                            //       src={overview[item.label].metadata.iconUrl}
-                            //     />
-                            //   </Center>
-                            // </Flex>
                             <MyRankStat item={item} overview={overview} />
                           )
                       )}
