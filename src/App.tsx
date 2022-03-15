@@ -8,12 +8,14 @@ import {
   FormLabel,
   Heading,
   HStack,
+  IconButton,
   Input,
   Radio,
   RadioGroup,
   StatGroup,
   Text,
 } from '@chakra-ui/react'
+import { BsGithub } from 'react-icons/bs'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { MyButton } from './component/button'
@@ -84,10 +86,26 @@ function App() {
         p='0'
       >
         <Box minH='100vh' backgroundColor='rgba(0,0,0,0.4)'>
-          <Container maxW='3xl'>
-            <Heading align='center' pt='10' fontSize={['2xl', '5xl']}>
-              Apex Legends 戦績checker
-            </Heading>
+          <Container maxW='3xl' pt='10'>
+            <Container
+              maxW='3xl'
+              display='flex'
+              justifyContent='space-between'
+              alignItems='center'
+            >
+              <Heading align='center' fontSize={['2xl', '5xl']}>
+                Apex Legends 戦績checker
+              </Heading>
+              <IconButton
+                as='a'
+                colorScheme='white'
+                aria-label='hithub'
+                icon={<BsGithub size='60px' />}
+                size='40px'
+                href='https://github.com/oNqNu/apex-recorder'
+                target='_blank'
+              />
+            </Container>
             <Box>
               <FormControl mt='10'>
                 <FormLabel fontSize={['lg', '2xl']}>
